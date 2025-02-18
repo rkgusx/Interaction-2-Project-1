@@ -1,13 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="index.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
 </head>
 <body>
-    
-
+    <div class="main-text">
+        <h1>wave</h1>
+        <h2>Like emotions, constantly rising and falling much like a roller coaster ride.</h2>
+    </div>
+    <div class="interactive-text">
+        <div class="buttons">
+            <button id="nextTextBtn">&gt;</button><span>e</span><span>m</span><span>o</span><span>t</span><span>i</span><span>o</span><span>n</span>
+        </div>
+        <div id="nextText" class="hidden-text">
+            <span>e</span><span>m</span><span>o</span><span>t</span><span>i</span><span>o</span><span>n</span>
+        </div>
+        <div class="buttons">
+            <button id="prevTextBtn" class="hidden-btn">&lt;</button>
+        </div>
+    </div>
+    <canvas id="gradientCanvas"></canvas>
     <script src="index.js"></script>
 </body>
 </html>
