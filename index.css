@@ -36,12 +36,6 @@ h1 {
     animation: slideUp 1s ease-in forwards;
     animation-delay: 0.5s;
     transform-origin: left center;
-    transition: width 0.3s ease-in-out !important;
-}
-
-h1:hover {
-    transform: scaleX(1.5);
-    transform-origin: left;
 }
 
 h2 {
@@ -69,6 +63,23 @@ h2 {
     }
 }
 
+.quote-text {
+    position: relative;
+    z-index: 10;
+    padding-top: 400px;
+    text-align: center;
+}
+
+.quote-text p {
+    font-size: 2em;
+    color: white;
+    font-family: 'Playfair Display', serif;
+    opacity: 0;
+    transform: translateY(100px);
+    animation: slideUp 1s ease-in forwards;
+    animation-delay: 2s;
+}
+
 .interactive-text {
     display: flex;
     justify-content: center;
@@ -88,6 +99,7 @@ h2 {
     transition: transform 0.3s ease-out;
     transform-origin: bottom;
     pointer-events: auto;
+    margin-top: 900px;
 }
 
 .hidden-text {
@@ -123,8 +135,8 @@ h2 {
     transform: translateY(-50%);
     font-size: 0.2em;
     transition: transform 0.2s ease-in-out;
+    margin-top: 360px;
 }
-
 
 #prevTextBtn {
     opacity: 0;
