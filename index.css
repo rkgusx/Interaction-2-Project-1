@@ -73,7 +73,7 @@ h2 {
 .quote-text p {
     font-size: 2em;
     color: white;
-    font-family: 'Montserrat Alternates', sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     opacity: 0;
     transform: translateY(100px);
     animation: slideUp 1s ease-in forwards;
@@ -114,25 +114,12 @@ h2 {
     z-index: 10;
     opacity: 0;
     transform: translateX(50%);
-    transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
-.hidden-text {
-    display: block;
-    transform: translateX(100%); /* 처음에는 화면 밖에 위치 */
-    opacity: 0;
-    transition: transform 0.6s ease, opacity 0.6s ease;
-}
-
-#nextText {
-    transform: translateX(100%); /* 처음엔 오른쪽 밖에 있음 */
-    opacity: 0;
-}
-
-
-.show {
-    transform: translateX(0); /* 화면 안으로 슬라이드 */
+.hidden-text.show {
     opacity: 1;
+    visibility: visible;
+    transition: opacity 1s ease-in-out, visibility 1s ease-in-out;
 }
 
 .buttons {
@@ -177,6 +164,16 @@ button:hover {
 .hidden-btn {
     display: none;
 }
+
+@keyframes vibrate {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+}
+
+/* h1 wavy 효과인데 아직 작동 안함 왜인지 잘 모르겠음 */
 
 @keyframes wave {
     0%, 100% {

@@ -188,8 +188,6 @@ document.querySelectorAll(".interactive-text span").forEach(letter => {
         }, 300);
     });
 });
-
-
 // 슬라이드 (아직 해결 못 함)
 
 let isTextVisible = false;
@@ -201,22 +199,25 @@ document.getElementById("nextTextBtn").addEventListener("click", () => {
     let nextTextBtn = document.getElementById("nextTextBtn");
 
     if (!isTextVisible) {
-        // 기존 .interactive-text 슬라이드를 왼쪽으로 밀기 (좌측 이동 후 opacity 0)
+        // 슬라이드 및 투명도 애니메이션
+        nextTextBtn.style.transition = "opacity 0.6s ease";
+        nextTextBtn.style.opacity = 0;
+
         emotionText.style.transition = "transform 0.6s ease, opacity 0.6s ease";
-        emotionText.style.transform = "translateX(-100%)"; // 왼쪽으로 밀기
+        emotionText.style.transform = "translateX(-100%)";
         emotionText.style.opacity = 0;
 
-        // 새로운 텍스트 나타내기
         setTimeout(() => {
             nextText.style.transition = "transform 0.6s ease, opacity 0.6s ease"; 
-            nextText.classList.add("show"); // 'show' 클래스를 추가해서 보이도록
             nextText.style.transform = "translateX(0)";
             nextText.style.opacity = 1;
 
             prevTextBtn.style.transition = "opacity 0.6s ease";
             prevTextBtn.style.opacity = 1;
 
-            nextTextBtn.style.display = "none"; // nextText 버튼 숨기기
+            nextTextBtn.style.display = "none"; 
+
+            nextText.classList.add("show"); // 'hidden-text' 가 보이도록 해주는 클래스 추가
         }, 600);
 
         isTextVisible = true; 
@@ -230,15 +231,15 @@ document.getElementById("prevTextBtn").addEventListener("click", () => {
     let nextTextBtn = document.getElementById("nextTextBtn");
 
     if (isTextVisible) {
-        // 'nextText'가 오른쪽으로 밀리고 opacity 0으로 설정
+        prevTextBtn.style.transition = "opacity 0.6s ease";
+        prevTextBtn.style.opacity = 0;
+
         nextText.style.transition = "transform 0.6s ease, opacity 0.6s ease";
-        nextText.classList.remove("show"); // 'show' 클래스를 제거해서 숨기기
         nextText.style.transform = "translateX(100%)";
         nextText.style.opacity = 0;
 
         setTimeout(() => {
-            // emotionText 복원 (슬라이드 및 opacity)
-            emotionText.style.transition = "transform 0.6s ease, opacity 0.6s ease";
+            emotionText.style.transition = "transform 0.6s ease, opacity 1s ease";
             emotionText.style.transform = "translateX(0)";
             emotionText.style.opacity = 1;
 
@@ -246,13 +247,12 @@ document.getElementById("prevTextBtn").addEventListener("click", () => {
             nextTextBtn.style.transition = "opacity 0.6s ease";
             nextTextBtn.style.opacity = 1;
 
+            nextText.classList.remove("show"); // 'hidden-text' 숨김
         }, 600); 
 
         isTextVisible = false; 
     }
 });
-
-
 
 
 // h1 wavy 효과인데 아직 안먹음
