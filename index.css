@@ -42,9 +42,9 @@ h2 {
     color: white;
     position: absolute;
     top: 20px;
-    left: 15%;
+    left: 16%;
     padding-top: 450px;
-    font-family: 'Montserrat Alternates', sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     font-weight: 400;
     z-index: 10;
     opacity: 0;
@@ -114,12 +114,25 @@ h2 {
     z-index: 10;
     opacity: 0;
     transform: translateX(50%);
+    transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
-.hidden-text.show {
+.hidden-text {
+    display: block;
+    transform: translateX(100%); /* 처음에는 화면 밖에 위치 */
+    opacity: 0;
+    transition: transform 0.6s ease, opacity 0.6s ease;
+}
+
+#nextText {
+    transform: translateX(100%); /* 처음엔 오른쪽 밖에 있음 */
+    opacity: 0;
+}
+
+
+.show {
+    transform: translateX(0); /* 화면 안으로 슬라이드 */
     opacity: 1;
-    visibility: visible;
-    transition: opacity 1s ease-in-out, visibility 1s ease-in-out;
 }
 
 .buttons {
@@ -165,10 +178,35 @@ button:hover {
     display: none;
 }
 
-@keyframes vibrate {
-    0% { transform: translateX(0); }
-    25% { transform: translateX(-5px); }
-    50% { transform: translateX(5px); }
-    75% { transform: translateX(-5px); }
-    100% { transform: translateX(0); }
+@keyframes wave {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+h1 span {
+    display: inline-block;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* 마우스를 올리면 wave 애니메이션 적용 */
+h1:hover span {
+    animation: wave 0.6s ease-in-out infinite;
+}
+
+/* 각 문자별로 애니메이션 딜레이 적용 */
+h1:hover span:nth-child(1) {
+    animation-delay: 0s;
+}
+h1:hover span:nth-child(2) {
+    animation-delay: 0.1s;
+}
+h1:hover span:nth-child(3) {
+    animation-delay: 0.2s;
+}
+h1:hover span:nth-child(4) {
+    animation-delay: 0.3s;
 }

@@ -178,7 +178,7 @@ window.addEventListener("scroll", handleScroll);
 
 document.querySelectorAll(".interactive-text span").forEach(letter => {
     letter.addEventListener("mouseenter", () => {
-        let randomScale = 1 + Math.random() * 1.5;
+        let randomScale = 1 + Math.random() * 0.5; // 기존보다 낮게 설정
         letter.style.transform = `scaleY(${randomScale})`;
     });
 
@@ -188,6 +188,7 @@ document.querySelectorAll(".interactive-text span").forEach(letter => {
         }, 300);
     });
 });
+
 
 // 슬라이드 (아직 해결 못 함)
 
@@ -200,24 +201,22 @@ document.getElementById("nextTextBtn").addEventListener("click", () => {
     let nextTextBtn = document.getElementById("nextTextBtn");
 
     if (!isTextVisible) {
-
-        nextTextBtn.style.transition = "opacity 0.6s ease";
-        nextTextBtn.style.opacity = 0;
-
+        // 기존 .interactive-text 슬라이드를 왼쪽으로 밀기 (좌측 이동 후 opacity 0)
         emotionText.style.transition = "transform 0.6s ease, opacity 0.6s ease";
-        emotionText.style.transform = "translateX(-100%)";
+        emotionText.style.transform = "translateX(-100%)"; // 왼쪽으로 밀기
         emotionText.style.opacity = 0;
 
+        // 새로운 텍스트 나타내기
         setTimeout(() => {
             nextText.style.transition = "transform 0.6s ease, opacity 0.6s ease"; 
+            nextText.classList.add("show"); // 'show' 클래스를 추가해서 보이도록
             nextText.style.transform = "translateX(0)";
-            nextText.style.opacity = 1; 
+            nextText.style.opacity = 1;
 
             prevTextBtn.style.transition = "opacity 0.6s ease";
             prevTextBtn.style.opacity = 1;
 
-            nextTextBtn.style.display = "none"; 
-
+            nextTextBtn.style.display = "none"; // nextText 버튼 숨기기
         }, 600);
 
         isTextVisible = true; 
@@ -230,24 +229,44 @@ document.getElementById("prevTextBtn").addEventListener("click", () => {
     let prevTextBtn = document.getElementById("prevTextBtn");
     let nextTextBtn = document.getElementById("nextTextBtn");
 
-    if (isTextVisible) { 
-        prevTextBtn.style.transition = "opacity 0.6s ease";
-        prevTextBtn.style.opacity = 0;
-
+    if (isTextVisible) {
+        // 'nextText'가 오른쪽으로 밀리고 opacity 0으로 설정
         nextText.style.transition = "transform 0.6s ease, opacity 0.6s ease";
+        nextText.classList.remove("show"); // 'show' 클래스를 제거해서 숨기기
         nextText.style.transform = "translateX(100%)";
         nextText.style.opacity = 0;
 
         setTimeout(() => {
-            emotionText.style.transition = "transform 0.6s ease, opacity 1s ease";
+            // emotionText 복원 (슬라이드 및 opacity)
+            emotionText.style.transition = "transform 0.6s ease, opacity 0.6s ease";
             emotionText.style.transform = "translateX(0)";
             emotionText.style.opacity = 1;
 
             nextTextBtn.style.display = "inline-block"; 
             nextTextBtn.style.transition = "opacity 0.6s ease";
             nextTextBtn.style.opacity = 1;
+
         }, 600); 
 
         isTextVisible = false; 
     }
+});
+
+
+
+
+// h1 wavy 효과인데 아직 안먹음
+const waveText = document.querySelector("#waveText");
+const letters = waveText.querySelectorAll("span");
+
+waveText.addEventListener("mouseenter", () => {
+    letters.forEach((letter, index) => {
+        letter.style.animation = `wave 0.6s ease-in-out ${index * 0.1}s infinite`;
+    });
+});
+
+waveText.addEventListener("mouseleave", () => {
+    letters.forEach(letter => {
+        letter.style.animation = "none";
+    });
 });
