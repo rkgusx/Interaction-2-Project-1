@@ -202,12 +202,12 @@ document.getElementById("nextTextBtn").addEventListener("click", () => {
     if (!isTextVisible) {
         // emotionText 슬라이드
         emotionText.style.transition = "transform 2s ease-in-out";  // transform만 애니메이션
-        emotionText.style.transform = "translateX(-25%)";  // 오른쪽으로 슬라이드
+        emotionText.style.transform = "translateX(-30%)";  // 오른쪽으로 슬라이드
 
         setTimeout(() => {
             // nextText 슬라이드 나타나기
             nextText.style.transition = "transform 0.7s ease, opacity 1s ease"; 
-            nextText.style.transform = "translateX(-180%)";
+            nextText.style.transform = "translateX(-200%)";
             nextText.style.opacity = 1;
 
             prevTextBtn.style.opacity = 1;
