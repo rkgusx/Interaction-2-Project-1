@@ -30,12 +30,11 @@ h1 {
     left: 15%;
     padding-top: 120px;
     z-index: 10;
-    transition: transform 0.3s ease;
-    opacity: 1;
+    opacity: 0; 
     display: inline-block;
+    transform: translateY(50px);
     animation: slideUp 1s ease-in forwards;
-    animation-delay: 0.5s;
-    transform-origin: left center;
+    transition: transform 1s ease, opacity 1s ease;
 }
 
 h2 {
@@ -65,8 +64,8 @@ h2 {
 
 .quote-text {
     position: relative;
-    z-index: 10;
-    padding-top: 400px;
+    z-index: 11;
+    padding-top: 500px;
     text-align: center;
 }
 
@@ -77,13 +76,18 @@ h2 {
     opacity: 0;
     transform: translateY(100px);
     animation: slideUp 1s ease-in forwards;
-    animation-delay: 2s;
+    animation-delay: 2.2s;
+}
+
+.quote-link {
+    text-decoration: none; 
+    color: inherit; 
 }
 
 .interactive-text {
     display: flex;
     justify-content: center;
-    font-size: 12em;
+    font-size: 10em;
     font-family: 'Montserrat Alternates', sans-serif;
     color: white;
     position: absolute;
@@ -92,6 +96,7 @@ h2 {
     transform: translateX(-50%);
     z-index: 10;
     align-items: center;
+    transition: transform 2s ease;
 }
 
 .interactive-text span {
@@ -103,45 +108,52 @@ h2 {
 }
 
 .hidden-text {
-    display: none;
+    display: block;
     position: absolute;
-    top: 600px;
+    top: 1865px;
     left: 50%;
-    transform: translateX(-50%);
-    font-size: 12em;
-    font-family: 'Playfair Display', serif;
+    transform: translateX(-20%);
+    font-size: 2.4em;
+    font-family: 'Montserrat Alternates', sans-serif;
     color: white;
-    z-index: 10;
+    z-index: 8;
     opacity: 0;
-    transform: translateX(50%);
 }
 
-.hidden-text.show {
+.hidden-text.show  {
     opacity: 1;
-    visibility: visible;
-    transition: opacity 1s ease-in-out, visibility 1s ease-in-out;
+    transition: opacity 2s ease-in-out;
 }
 
 .buttons {
     position: relative;
     z-index: 20;
-    margin-right: 20px;
 }
 
 #nextTextBtn {
     position: absolute;
-    left: 880px;
+    left: 800px;
     top: 60%;
     transform: translateY(-50%);
     font-size: 0.2em;
     transition: transform 0.2s ease-in-out;
     margin-top: 360px;
+    opacity: 1;
+    transition: opacity 1s ease-out;
 }
 
+/* 이거 지금 작동 안함
 #prevTextBtn {
     opacity: 0;
-    transition: opacity 0.6s ease;
+    transform: translateX(0);
+    transition: opacity 0.6s ease 0.3s, transform 0.6s ease 0.3s;
 }
+
+#prevTextBtn.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+*/
 
 #nextTextBtn:hover {
     transform: translateY(-50%) scale(1.2);
@@ -165,45 +177,42 @@ button:hover {
     display: none;
 }
 
-@keyframes vibrate {
-    0% { transform: translateX(0); }
-    25% { transform: translateX(-5px); }
-    50% { transform: translateX(5px); }
-    75% { transform: translateX(-5px); }
-    100% { transform: translateX(0); }
-}
 
-/* h1 wavy 효과인데 아직 작동 안함 왜인지 잘 모르겠음 */
-
-@keyframes wave {
+@keyframes waveEffect {
     0%, 100% {
         transform: translateY(0);
     }
     50% {
-        transform: translateY(-20px);
+        transform: translateY(-3px);
     }
 }
 
-h1 span {
+@keyframes floatEffect {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+#waveText {
+    font-size: 12em;
+    color: white;
+    font-family: 'Montserrat Alternates', sans-serif;
+    font-weight: 400;
+    position: relative;  
+    top: 20%;
+    left: 15%;
+    padding-top: 120px;
+    z-index: 10;
+    transition: transform 0.3s ease;
     display: inline-block;
-    transition: transform 0.3s ease-in-out;
+    animation: slideUp 1s ease-in forwards;
+    animation-delay: 0.5s;
+    transform-origin: left center;
 }
 
-/* 마우스를 올리면 wave 애니메이션 적용 */
-h1:hover span {
-    animation: wave 0.6s ease-in-out infinite;
-}
-
-/* 각 문자별로 애니메이션 딜레이 적용 */
-h1:hover span:nth-child(1) {
-    animation-delay: 0s;
-}
-h1:hover span:nth-child(2) {
-    animation-delay: 0.1s;
-}
-h1:hover span:nth-child(3) {
-    animation-delay: 0.2s;
-}
-h1:hover span:nth-child(4) {
-    animation-delay: 0.3s;
-}
